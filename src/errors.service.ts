@@ -1,32 +1,32 @@
 import { HttpException, HttpStatus, Injectable, Logger } from "@nestjs/common";
-import { ApiProperty } from "@nestjs/swagger";
 
 export class HttpError {
-	@ApiProperty({ example: 404 })
-	readonly status: number;
+	readonly succsess: boolean;
 
-	@ApiProperty({ example: "Not found" })
-	readonly message: string;
+	readonly error: string;
 }
 
 @Injectable()
 export class ErrorsService {
 	private readonly logger = new Logger(ErrorsService.name);
 
-	checkDuplicationError(err: Error) {
-		if (err.message.includes("E11000")) {
-			throw new HttpException({ status: 409, message: "Duplicate error" }, HttpStatus.CONFLICT);
-		}
-	}
-
-	throwDefaultError(err: Error) {
+	public throwInvalidInputError(message: string) {
 		throw new HttpException(
-			{ status: 500, message: err.message },
-			HttpStatus.INTERNAL_SERVER_ERROR
+			{
+				success: false,
+				error: `Invalid input format. ${message}`,
+			},
+			HttpStatus.UNPROCESSABLE_ENTITY
 		);
 	}
 
-	throwNotFoundError() {
-		throw new HttpException({ status: 404, message: "Not found" }, HttpStatus.NOT_FOUND);
+	public throwInvalidFormatError() {
+		throw new HttpException(
+			{
+				success: false,
+				error: `Invalid sheet size. Too small for producing at least one box`,
+			},
+			HttpStatus.UNPROCESSABLE_ENTITY
+		);
 	}
 }
