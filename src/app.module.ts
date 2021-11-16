@@ -1,22 +1,11 @@
 import { Module } from "@nestjs/common";
-import { ConfigModule } from "@nestjs/config";
-import { MongooseModule } from "@nestjs/mongoose";
 
-import { RolesModule } from "./roles/roles.module";
-import { UsersModule } from "./users/users.module";
-
-const HOST = `${process.env.MONGO_HOST || "mongodb://localhost"}`;
-const PORT = `${process.env.MONGO_PORT || "27017"}`;
-const DB = `${process.env.MONGO_DB || ""}`;
+import { AppController } from "./app.controller";
+import { ErrorsService } from "./errors.service";
+import { ValidationService } from "./validation/validation.service";
 
 @Module({
-	imports: [
-		ConfigModule.forRoot({
-			envFilePath: `.${process.env.NODE_ENV}.env`,
-		}),
-		MongooseModule.forRoot(`${HOST}:${PORT}/${DB}`),
-		UsersModule,
-		RolesModule,
-	],
+	controllers: [AppController],
+	providers: [ErrorsService, ValidationService],
 })
 export class AppModule {}
