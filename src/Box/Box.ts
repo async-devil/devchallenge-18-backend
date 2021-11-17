@@ -1,5 +1,3 @@
-import { writeFileSync } from "fs";
-
 import { Command, Commands } from "../Commands/Commands";
 import { CutBoxDto } from "../dto/CutBox.dto";
 
@@ -151,8 +149,6 @@ export class Box {
 			Commands.goto(commands, this.move(currPos, currPos.x, currPos.y - w));
 			this.cutHalfWidthStartingFromRight(commands, currPos, halfWidth, true);
 		}
-
-		writeFileSync("log.txt", JSON.stringify(commands));
 
 		return commands;
 	}
