@@ -119,11 +119,27 @@ describe("Validation service tests", () => {
 	});
 
 	describe("checkIfBoxFits method tests", () => {
-		test("Check if valid values pass", () => {
+		test("Check if valid normal values pass", () => {
 			const testData = {
 				sheetSize: {
 					w: 800,
 					l: 400,
+				},
+				boxSize: {
+					w: 200,
+					d: 200,
+					h: 200,
+				},
+			};
+
+			expect(validationService.checkIfBoxFits(testData)).toBe(true);
+		});
+
+		test("Check if valid rotated values pass", () => {
+			const testData = {
+				sheetSize: {
+					w: 400,
+					l: 800,
 				},
 				boxSize: {
 					w: 200,
