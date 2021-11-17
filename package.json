@@ -1,22 +1,21 @@
 {
-  "name": "mongodb-nestjs-backend-template-ts",
+  "name": "devchallenge-18-backend",
   "version": "1.0.0",
   "license": "MIT",
   "main": "./dist/index.js",
   "author": "async-devil",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/async-devil/mongodb-nestjs-backend-template-ts.git"
+    "url": "git+https://github.com/async-devil/devchallenge-18-backend.git"
   },
   "bugs": {
-    "url": "https://github.com/async-devil/mongodb-nestjs-backend-template-ts/issues"
+    "url": "https://github.com/async-devil/devchallenge-18-backend/issues"
   },
-  "homepage": "https://github.com/async-devil/mongodb-nestjs-backend-template-ts#readme",
+  "homepage": "https://github.com/async-devil/devchallenge-18-backend#readme",
   "keywords": [
-    "MongoDB",
-    "Mongoose",
-    "Node.js",
-    "Nestjs"
+    "challenge",
+    "devchallenge18",
+    "backend"
   ],
   "scripts": {
     "prebuild": "rimraf dist",
