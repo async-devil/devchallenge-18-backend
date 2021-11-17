@@ -20,7 +20,7 @@ export class ErrorsService {
 		);
 	}
 
-	public throwInvalidFormatError() {
+	public throwInvalidSizeError() {
 		throw new HttpException(
 			{
 				success: false,
