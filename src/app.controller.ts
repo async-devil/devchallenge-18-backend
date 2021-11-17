@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from "@nestjs/common";
+import { Body, Controller, HttpCode, Post } from "@nestjs/common";
 
 import { CutterService } from "./cutter/cutter.service";
 import { CutBoxDto } from "./dto/CutBox.dto";
@@ -12,6 +12,7 @@ export class AppController {
 	) {}
 
 	@Post("/simple_box")
+	@HttpCode(200)
 	public cutBox(@Body() boxDto: CutBoxDto) {
 		this.validationService.checkIfCutBoxDtoValid(boxDto);
 		this.validationService.checkIfBoxFits(boxDto);
