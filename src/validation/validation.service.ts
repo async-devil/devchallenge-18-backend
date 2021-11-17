@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 
+import { Box } from "../Box/Box";
 import { CutBoxDto } from "../dto/CutBox.dto";
 import { ErrorsService } from "../errors.service";
 
@@ -32,6 +33,13 @@ export class ValidationService {
 		this.checkIfValidNumber(checkSubject.sheetSize.l, checkSubject.sheetSize.w);
 		this.checkIfValidNumber(checkSubject.boxSize.d, checkSubject.boxSize.h, checkSubject.boxSize.w);
 
+		return true;
+	}
+
+	public checkIfBoxFits(data: CutBoxDto) {
+		const box = new Box(data);
+
+		if (!box.checkIfBoxFits()) this.errorsServise.throwInvalidSizeError();
 		return true;
 	}
 }
